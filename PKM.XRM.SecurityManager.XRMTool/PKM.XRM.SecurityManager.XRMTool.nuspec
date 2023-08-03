@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>PKM.XRM.SecurityManager.XRMTool</id>
+    <version>1.2023.8.3</version>
+    <title>Security Manager</title>
+    <authors>Prashant Maurya</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <iconUrl>https://prashantmayur.files.wordpress.com/2023/08/icon_80.png</iconUrl>
+    <projectUrl>https://github.com/deepprashant/PKM.XRM.SecurityManager</projectUrl>
+    <description>Tool for efficiently managing securities in Dataverse</description>
+    <releaseNotes>First Version</releaseNotes>
+    <copyright>Copyright 2023 @ Prashant Maurya</copyright>
+    <tags>Security Manager, CRM Security Manager, Dataverse Security Manager</tags>
+    <dependencies>
+      <dependency id="XrmToolBox" version="1.2022.10.58"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\PKM.XRM.SecurityManager.DataModelLayer.dll" target="lib\net462\Plugins"></file>
+    <file src="bin\Release\PKM.XRM.SecurityManager.DataLayer.dll" target="lib\net462\Plugins"></file>
+    <file src="bin\Release\PKM.XRM.SecurityManager.ServiceLayer.dll" target="lib\net462\Plugins"></file>
+    <file src="bin\Release\PKM.XRM.SecurityManager.UI.dll" target="lib\net462\Plugins"></file>
+    <file src="bin\Release\PKM.XRM.SecurityManager.XRMTool.dll" target="lib\net462\Plugins"></file>
+  </files>
+</package>
