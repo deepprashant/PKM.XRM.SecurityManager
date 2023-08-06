@@ -9,6 +9,7 @@ namespace PKM.XRM.SecurityManager.UI.View
     {
         private string multiSelectName;
         private string emptyGridMessage;
+        private string selectedBU;
         public string MultiSelectName
         {
             get
@@ -26,6 +27,7 @@ namespace PKM.XRM.SecurityManager.UI.View
         public int AssignedCount { set => groupBoxAssigned.Text = $"Assigned {MultiSelectName}: {value}"; }
         public int AvailableCount { set => groupBoxAvailable.Text = $"Available {MultiSelectName}: {value}"; }
         public string EmptyGridMessage { set => emptyGridMessage = value; }
+        public string SelectedBU { get => selectedBU; set => selectedBU = value; }
 
         public MultiSelectView()
         {
@@ -111,7 +113,7 @@ namespace PKM.XRM.SecurityManager.UI.View
 
         public void HideBusinessUniteColumn()
         {
-            dataGridViewAvailable.Columns["availableBusinessUnit"].Visible = false; 
+            dataGridViewAvailable.Columns["availableBusinessUnit"].Visible = false;
             dataGridViewAssigned.Columns["assignedBusinessUnit"].Visible = false;
         }
 

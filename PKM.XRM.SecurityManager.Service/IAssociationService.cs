@@ -7,7 +7,7 @@ namespace PKM.XRM.SecurityManager.ServiceLayer
     public interface IAssociationService<T>
     {
         IEnumerable<T> InitialLoadAndCacheRelatedData(string fetchXML, string searchName);
-        IEnumerable<T> FetchAllRecords(IEnumerable<Guid> selectedBUs);
+        IEnumerable<T> FetchAllRecords(Guid selectedBU = default(Guid));
         IEnumerable<BaseAssociationModel> FetchAssociationTableRecords(string entityLogicalName, List<Guid> entityIds);
         void UpdatedAssociationTableRecords(IEnumerable<BaseAssociationModel> associations, bool assign);
     }

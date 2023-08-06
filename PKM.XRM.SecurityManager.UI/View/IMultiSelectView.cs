@@ -9,10 +9,12 @@ namespace PKM.XRM.SecurityManager.UI.View
 {
     public interface IMultiSelectView
     {
-        string MultiSelectName { get;  set; }
+        string MultiSelectName { get; set; }
         int AssignedCount { set; }
         int AvailableCount { set; }
         string EmptyGridMessage { set; }
+
+        string SelectedBU { get; set; }
 
         event EventHandler AssignSelected;
         event EventHandler AssignAll;

@@ -18,8 +18,12 @@ namespace PKM.XRM.SecurityManager.ServiceLayer
             OrgService = orgService;
         }
 
+        //public IEnumerable<T> FetchAllRecords(IEnumerable<Guid> selectedBUs)
+        //{
+        //    return OrgService.GetFieldSecurityProfiles() as IEnumerable<T>;
+        //}
 
-        public IEnumerable<T> FetchAllRecords(IEnumerable<Guid> selectedBUs)
+        public IEnumerable<T> FetchAllRecords(Guid selectedBU)
         {
             return OrgService.GetFieldSecurityProfiles() as IEnumerable<T>;
         }

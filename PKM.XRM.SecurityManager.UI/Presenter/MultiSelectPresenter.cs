@@ -55,6 +55,8 @@ namespace PKM.XRM.SecurityManager.UI.Presenter
             }
         }
 
+        public bool FilerBySelecetedPrimaryEntityBU { get; set; }
+
         public event EventHandler AssignmentChanged;
 
         public MultiSelectPresenter(string name, IMultiSelectView view, S service)
@@ -105,19 +107,6 @@ namespace PKM.XRM.SecurityManager.UI.Presenter
         {
             if (SelectedPrimaryEntities.Count() >= 1)
             {
-                //RunAsync("Loading Security Data...",
-                //() =>
-                //{
-                //    FetchData();
-                //},
-                //() =>
-                //{
-                //    DisplayData();
-                //},
-                //(error) =>
-                //{
-                //    ShowErrorMessage(error);
-                //});
                 try
                 {
                     FetchData();
@@ -132,7 +121,9 @@ namespace PKM.XRM.SecurityManager.UI.Presenter
 
         private void FetchData()
         {
-            all = service.FetchAllRecords(SelectedPrimaryEntities.Select(a => a.BusinessUnitId).Distinct());
+            //Guid selectedBUId = string.IsNullOrWhiteSpace(view.SelectedBU) ? Guid.Empty : new Guid(view.SelectedBU);
+            Guid selectedBUId = FilerBySelecetedPrimaryEntityBU? SelectedPrimaryEntities.Select(a => a.BusinessUnitId).FirstOrDefault(): default(Guid);
+            all = service.FetchAllRecords(selectedBUId);
             allAssigned = service.FetchAssociationTableRecords(SelectedPrimaryEntities.First().EntityLogicalName, SelectedPrimaryEntities.Select(a => a.Id).ToList());
         }
 

@@ -59,12 +59,12 @@ namespace PKM.XRM.SecurityManager.UI.View
 
         private void AssociateAndRaisViewEvent()
         {
-            buttonSearch.Click += delegate { SearchUser?.Invoke(this, EventArgs.Empty); };
-            dataGridTeams.SelectionChanged += delegate { UserSelection?.Invoke(this, EventArgs.Empty); };
+            buttonSearch.Click += delegate { SearchPrimaryEntity?.Invoke(this, EventArgs.Empty); };
+            dataGridTeams.SelectionChanged += delegate { PrimaryEntityRecordSelection?.Invoke(this, EventArgs.Empty); };
         }
 
-        public event EventHandler SearchUser;
-        public event EventHandler UserSelection;
+        public event EventHandler SearchPrimaryEntity;
+        public event EventHandler PrimaryEntityRecordSelection;
 
         public void SetUsersBindingSource(BindingSource users)
         {

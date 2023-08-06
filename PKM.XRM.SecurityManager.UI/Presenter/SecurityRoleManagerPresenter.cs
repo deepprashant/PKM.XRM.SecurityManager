@@ -47,6 +47,8 @@ namespace PKM.XRM.SecurityManager.UI.Presenter
         {
             userPresenter = new MultiSelectPresenter<RoleModel, UserModel, UserService<UserModel>>(Constants.MultiSelectUsers, view.UserView, new UserService<UserModel>(roleService.OrgService));
             teamPresenter = new MultiSelectPresenter<RoleModel, TeamModel, TeamService<TeamModel>>(Constants.MultiSelectTeams, view.TeamView, new TeamService<TeamModel>(roleService.OrgService));
+            userPresenter.FilerBySelecetedPrimaryEntityBU = true;
+            teamPresenter.FilerBySelecetedPrimaryEntityBU = true;
         }
 
         private void SearchPrimaryEntityEvenHandler(object sender, EventArgs e)

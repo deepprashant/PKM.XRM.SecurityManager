@@ -54,6 +54,7 @@ namespace PKM.XRM.SecurityManager.UI.Presenter
             teamPresenter = new MultiSelectPresenter<UserModel, TeamModel, TeamService<TeamModel>>(Constants.MultiSelectTeams, view.TeamView, new TeamService<TeamModel>(userService.OrgService));
             fspPresenter = new MultiSelectPresenter<UserModel, FSPModel, FSPService<FSPModel>>(Constants.MultiSelectFSPs, view.FieldSecurityProfileView, new FSPService<FSPModel>(userService.OrgService));
             fspPresenter.HideBusinessUniteColumn();
+            rolePresenter.FilerBySelecetedPrimaryEntityBU = true;
 
             rolePresenter.AssignmentChanged += RoleAssignmentChanged;
             teamPresenter.AssignmentChanged += TeamAssignmentChanged;
@@ -97,8 +98,8 @@ namespace PKM.XRM.SecurityManager.UI.Presenter
             var selectedUsersBUs = selectedUsers.Select(a => a.BusinessUnitId).Distinct();
             var selecteduserCount = selectedUserIds.Count();
             if (selectedUsersBUs.Count() <= 1)
-            {
-                rolePresenter.SelectedPrimaryEntities = selectedUsers;
+            {                
+                rolePresenter.SelectedPrimaryEntities = selectedUsers;                
             }
             else
             {

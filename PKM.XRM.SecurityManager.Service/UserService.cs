@@ -18,9 +18,14 @@ namespace PKM.XRM.SecurityManager.ServiceLayer
             OrgService = orgService;
         }
 
-        public IEnumerable<T> FetchAllRecords(IEnumerable<Guid> selectedBUs)
+        //public IEnumerable<T> FetchAllRecords(IEnumerable<Guid> selectedBUs)
+        //{
+        //    return OrgService.GetUsers() as IEnumerable<T>;
+        //}
+
+        public IEnumerable<T> FetchAllRecords(Guid selectedBU)
         {
-            return OrgService.GetUsers() as IEnumerable<T>;
+            return OrgService.GetUsers(selectedBU) as IEnumerable<T>;
         }
 
         public IEnumerable<BaseAssociationModel> FetchAssociationTableRecords(string entityLogicalName, List<Guid> entityIds)

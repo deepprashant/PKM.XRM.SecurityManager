@@ -23,9 +23,14 @@ namespace PKM.XRM.SecurityManager.ServiceLayer
             return OrgService.InitialTeamLoadAndCacheRelatedData(fetchXML, teamName) as IEnumerable<T>;
         }
 
-        public IEnumerable<T> FetchAllRecords(IEnumerable<Guid> selectedUsersBUs)
+        //public IEnumerable<T> FetchAllRecords(IEnumerable<Guid> selectedUsersBUs)
+        //{
+        //    return OrgService.GetTeams() as IEnumerable<T>;
+        //}
+
+        public IEnumerable<T> FetchAllRecords(Guid selectedBU)
         {
-            return OrgService.GetTeams() as IEnumerable<T>;
+            return OrgService.GetTeams(selectedBU) as IEnumerable<T>;
         }
 
         public IEnumerable<BaseAssociationModel> FetchAssociationTableRecords(string entityLogicalName, List<Guid> entityIds)

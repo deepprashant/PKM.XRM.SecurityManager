@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>PKM.XRM.SecurityManager.XRMTool</id>
-    <version>1.2023.8.3</version>
+    <version>1.2023.8.6</version>
     <title>Security Manager</title>
     <authors>Prashant Maurya</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

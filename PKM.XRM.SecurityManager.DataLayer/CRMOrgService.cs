@@ -650,10 +650,23 @@ namespace PKM.XRM.SecurityManager.DataLayer
 
             return data;
         }
-        public IEnumerable<UserModel> GetUsers()
+
+        //public IEnumerable<UserModel> GetUsers()
+        //{
+        //    return cachedUsers;
+        //}
+        public IEnumerable<UserModel> GetUsers(Guid buId)
         {
-            return cachedUsers;
+            if (buId != default(Guid))
+            {
+                return cachedUsers.Where(a => a.BusinessUnitId == buId);
+            }
+            else
+            {
+                return cachedUsers;
+            }
         }
+
         public IEnumerable<BaseAssociationModel> GetTeamAssignedUsers(List<Guid> teamIds)
         {
             return (from teamUsers in cachedTeamUsers
@@ -776,10 +789,23 @@ namespace PKM.XRM.SecurityManager.DataLayer
 
             return data;
         }
-        public IEnumerable<TeamModel> GetTeams()
+
+        //public IEnumerable<TeamModel> GetTeams()
+        //{
+        //    return cachedTeams;
+        //}
+        public IEnumerable<TeamModel> GetTeams(Guid buId)
         {
-            return cachedTeams;
+            if (buId != default(Guid))
+            {
+                return cachedTeams.Where(a => a.BusinessUnitId == buId);
+            }
+            else
+            {
+                return cachedTeams;
+            }
         }
+
         public IEnumerable<BaseAssociationModel> GetUserAssignedTeams(List<Guid> selectedUserIds)
         {
             return (from userTeam in cachedUserTeams
@@ -814,13 +840,26 @@ namespace PKM.XRM.SecurityManager.DataLayer
 
             return data;
         }
-        public IEnumerable<RoleModel> GetBURoles(IEnumerable<Guid> selectedUsersBUs)
+
+        //public IEnumerable<RoleModel> GetBURoles(IEnumerable<Guid> selectedUsersBUs)
+        //{
+        //    return (from role in cachedRoles
+        //            join buId in selectedUsersBUs on role.BusinessUnitId equals buId
+        //            //orderby role.Name
+        //            select role);
+        //}
+        public IEnumerable<RoleModel> GetBURoles(Guid buId)
         {
-            return (from role in cachedRoles
-                    join buId in selectedUsersBUs on role.BusinessUnitId equals buId
-                    //orderby role.Name
-                    select role);
+            if (buId != default(Guid))
+            {
+                return cachedRoles.Where(a => a.BusinessUnitId == buId);
+            }
+            else
+            {
+                return cachedRoles;
+            }
         }
+
         public List<BaseAssociationModel> GetUserAssignedRoles(List<Guid> selectedUserIds)
         {
             return (from userRole in cachedUserRoles
@@ -993,6 +1032,14 @@ namespace PKM.XRM.SecurityManager.DataLayer
                 }
                 else if (associationPrimaryEntityName == Constants.RoleTableName)
                 {
+                    if (associationLogicalName == Constants.UserRoleAssociationTable)
+                    {
+                        cachedRoleUsers = cachedRoleUsers.Union(assoications);
+                    }
+                    else if (associationLogicalName == Constants.TeamRoleAssociationTable)
+                    {
+                        cachedRoleTeams = cachedRoleTeams.Union(assoications);
+                    }
                 }
             }
             else
@@ -1040,6 +1087,14 @@ namespace PKM.XRM.SecurityManager.DataLayer
                 }
                 else if (associationPrimaryEntityName == Constants.RoleTableName)
                 {
+                    if (associationLogicalName == Constants.UserRoleAssociationTable)
+                    {
+                        cachedRoleUsers = cachedRoleUsers.Except(assoications);
+                    }
+                    else if (associationLogicalName == Constants.TeamRoleAssociationTable)
+                    {
+                        cachedRoleTeams = cachedRoleTeams.Except(assoications);
+                    }
                 }
             }
         }

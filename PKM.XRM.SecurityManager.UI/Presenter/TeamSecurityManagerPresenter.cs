@@ -33,7 +33,7 @@ namespace PKM.XRM.SecurityManager.UI.Presenter
             this.view = view;
             this.teamService = teamService;
             this.entityViewService = entityViewService;
-            this.view.SearchUser += SearchUserEvenHandler;
+            this.view.SearchPrimaryEntity += SearchPrimaryEntityEvenHandler;
             LoadTeamEntityViews();
             this.view.SetTeamEntityViewBindingSource(teamEntityViewsBindingSource);
             this.view.SetUsersBindingSource(teamBindingSource);
@@ -47,6 +47,7 @@ namespace PKM.XRM.SecurityManager.UI.Presenter
             userPresenter = new MultiSelectPresenter<TeamModel, UserModel, UserService<UserModel>>(Constants.MultiSelectUsers, view.UserView, new UserService<UserModel>(teamService.OrgService));
             fspPresenter = new MultiSelectPresenter<TeamModel, FSPModel, FSPService<FSPModel>>(Constants.MultiSelectFSPs, view.FieldSecurityProfileView, new FSPService<FSPModel>(teamService.OrgService));
             fspPresenter.HideBusinessUniteColumn();
+            rolePresenter.FilerBySelecetedPrimaryEntityBU = true;
         }
 
         private void LoadTeamEntityViews()
@@ -54,7 +55,7 @@ namespace PKM.XRM.SecurityManager.UI.Presenter
             entityViews = entityViewService.GetEntityViews("team", true);
             teamEntityViewsBindingSource.DataSource = entityViews;
         }
-        private void SearchUserEvenHandler(object sender, EventArgs e)
+        private void SearchPrimaryEntityEvenHandler(object sender, EventArgs e)
         {
             selectedUserViewFetchXML = this.view.SelectedUserEntityViewFetchXML;
             userNameSearchPhrase = this.view.UserNameSearchPhrase;
@@ -65,10 +66,10 @@ namespace PKM.XRM.SecurityManager.UI.Presenter
                 },
                 () =>
                 {
-                    this.view.UserSelection -= TeamSelectionEventHandler;
+                    this.view.PrimaryEntityRecordSelection -= TeamSelectionEventHandler;
                     teamBindingSource.DataSource = IEnumerableToDataTable.ToDataTable<TeamModel>(teams);
                     this.view.UserCount = teams.Count();
-                    this.view.UserSelection += TeamSelectionEventHandler;
+                    this.view.PrimaryEntityRecordSelection += TeamSelectionEventHandler;
                 },
                 (error) =>
                 {

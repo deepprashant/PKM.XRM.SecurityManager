@@ -16,9 +16,9 @@ namespace PKM.XRM.SecurityManager.UI.View
         string SelectedUserEntityViewFetchXML { get; }
         int UserCount { set; }
 
-        event EventHandler SearchUser;
+        event EventHandler SearchPrimaryEntity;
 
-        event EventHandler UserSelection;
+        event EventHandler PrimaryEntityRecordSelection;
 
         void SetTeamEntityViewBindingSource(BindingSource userEntityViews);
         void SetUsersBindingSource(BindingSource users);
